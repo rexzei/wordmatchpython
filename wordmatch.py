@@ -1,4 +1,3 @@
-
 import random
 from random import choice
 
@@ -10,6 +9,8 @@ attempts = 0
 
 # Hint
 hint = 0
+hintNegative = 3
+
 
 # Array of Words
 wordArray = ["book", "orange", "plant", "house", "computer", "grass"]
@@ -26,40 +27,15 @@ wordLenght = len(word)
 wordListed = list(word)
 
 
-# TODO Pick out random characters from wordListed and store them in a separate string
-# First Hint
-hintOne = wordLenght / 4
-hintOneInt = int(hintOne)
-print(hintOneInt)
-
-# TODO Combine each of theese into on hint wich gradually increases
-# Second Hint
-hintTwo = wordLenght / 2
-hintTwoInt = int(hintTwo)
-print(hintTwoInt)
-
-# Third Hint
-hintThree = wordLenght - 1
-hintThreeInt = int(hintThree)
-hintThreeTempInt = hintThreeInt
-hintThreeTemp = list(word)
-
-while hintThreeTempInt > 0:
-    # Remove 1 point each run
-    hintThreeTempInt = hintThreeTempInt - 1
-    print(hintThreeTempInt)
-    # Pick out random letters and remove them from an array
-    randomThreeTemp = random.choice(hintThreeTemp)
-    hintThreeTemp.remove(randomThreeTemp)
-
-    print(hintThreeTemp)
-
-
-
-print(hintThreeInt)
-
-print("wordlisted: " + str(wordListed))
-print("temp wordlisted: " + str(hintThreeTemp))
+# Hint
+def hintFunction(int):
+    # Get 25%, 50%, 75% of letters
+    if hint < 4:
+        print("You got: " + str(hintNegative) + " left")
+        lenghtHint = wordLenght / 4 * int
+        print(lenghtHint)
+    else:
+        print("You are out of hints")
 
 while answer < wordLenght:
 
@@ -70,14 +46,14 @@ while answer < wordLenght:
         # if input success
         answer = answer + 1
         wordListed.remove(userInput)
-        print(wordListed)
+        print(wordListed)a
 
     # TODO 3 diffrent hints with random characters
     elif userInput == "hint":
         hint = hint + 1
+        hintNegative = hintNegative - 1
+        hintFunction(hint)
 
-    elif hint == 1:
-        print()
     elif userInput == word:
         break
 
