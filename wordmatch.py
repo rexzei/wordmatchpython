@@ -25,10 +25,11 @@ wordLenght = len(word)
 
 # List the word in a list
 wordListed = list(word)
+wordListedHint = list(word)
 
 
-# Hint
-def hintFunction(int):
+# Hint manager function
+def hintLenght(int):
     # Get 25%, 50%, 75% of letters
     if hint < 4:
         print("You got: " + str(hintNegative) + " left")
@@ -36,6 +37,17 @@ def hintFunction(int):
         print(lenghtHint)
     else:
         print("You are out of hints")
+
+# Random letter function
+def randomLetter (int):
+
+    for int in range(0, int):
+
+        # Pick random letter and remove
+        randomLetterTemp = random.choice(wordListedHint)
+        wordListedHint.remove(randomLetterTemp)
+
+    print(wordListedHint)
 
 while answer < wordLenght:
 
@@ -46,13 +58,14 @@ while answer < wordLenght:
         # if input success
         answer = answer + 1
         wordListed.remove(userInput)
-        print(wordListed)a
+        print(wordListed)
 
     # TODO 3 diffrent hints with random characters
     elif userInput == "hint":
         hint = hint + 1
         hintNegative = hintNegative - 1
-        hintFunction(hint)
+        hintTemp = hintLenght(hint)
+        randomLetter(hintTemp)
 
     elif userInput == word:
         break
